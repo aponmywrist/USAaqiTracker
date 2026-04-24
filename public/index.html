@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>United States AQI Atlas</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Live IQAir-powered air quality dashboard</p>
+          <h1>United States AQI Atlas</h1>
+          <p class="hero-text">
+            Explore AQI across U.S. cities, search any location, click markers for details,
+            and compare air-quality hotspots with major solar farm locations.
+          </p>
+        </div>
+        <div class="hero-stats" id="hero-stats">
+          <article>
+            <span class="stat-label">Cities loaded</span>
+            <strong id="stat-cities">0</strong>
+          </article>
+          <article>
+            <span class="stat-label">Average AQI</span>
+            <strong id="stat-average">--</strong>
+          </article>
+          <article>
+            <span class="stat-label">Worst city</span>
+            <strong id="stat-worst">--</strong>
+          </article>
+        </div>
+      </header>
+
+      <section class="control-bar">
+        <label class="search-wrap" for="city-search">
+          <span>Search cities</span>
+          <input
+            id="city-search"
+            type="search"
+            placeholder="Search by city or state"
+            autocomplete="off"
+          />
+        </label>
+        <button class="ghost-button" id="locate-me" type="button">Find my area</button>
+        <button class="ghost-button" id="refresh-data" type="button">Refresh data</button>
+        <div class="toggle-group">
+          <label>
+            <input id="toggle-cities" type="checkbox" checked />
+            <span>City AQI markers</span>
+          </label>
+          <label>
+            <input id="toggle-solar" type="checkbox" checked />
+            <span>Solar farm icons</span>
+          </label>
+        </div>
+      </section>
+
+      <main class="dashboard">
+        <section class="map-panel">
+          <div id="map"></div>
+          <div class="map-legend">
+            <div><span class="legend-color good"></span> Good</div>
+            <div><span class="legend-color moderate"></span> Moderate</div>
+            <div><span class="legend-color usg"></span> Sensitive groups</div>
+            <div><span class="legend-color unhealthy"></span> Unhealthy</div>
+            <div><span class="legend-color very-unhealthy"></span> Very unhealthy</div>
+            <div><span class="legend-color hazardous"></span> Hazardous</div>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <section class="card">
+            <div class="card-header">
+              <h2>Selected location</h2>
+              <span id="last-updated">Waiting for data</span>
+            </div>
+            <div id="city-detail" class="city-detail empty">
+              Click a city marker or search to inspect its air quality.
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h2>Hotspots</h2>
+              <span>Highest AQI loaded now</span>
+            </div>
+            <div id="hotspots" class="list-panel"></div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h2>Best air right now</h2>
+              <span>Lowest AQI loaded now</span>
+            </div>
+            <div id="cleanest" class="list-panel"></div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h2>System notes</h2>
+              <span>Refresh and quota status</span>
+            </div>
+            <div id="warnings" class="notes-panel"></div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
