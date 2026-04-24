@@ -1,0 +1,10 @@
+{
+  "name": "iqair-usa-aqi-map",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive US AQI map powered by IQAir data.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}
